@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rahul Gorle | Portfolio</title>
+<style>
+  * {
+    margin:0; padding:0; box-sizing:border-box;
+    font-family:"Poppins",sans-serif; transition:all 0.3s ease;
+  }
+  body {
+    background: linear-gradient(135deg,#a8edea,#fed6e3);
+    color:#222;
+    scroll-behavior:smooth;
+  }
+  body.dark {
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:#f4f4f4;
+  }
+
+  header {
+    background: linear-gradient(90deg,#0072ff,#00c6ff);
+    color:white;
+    text-align:center;
+    padding:20px 0;
+    position:sticky; top:0; z-index:10;
+    display:flex; justify-content:center; align-items:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+  }
+  body.dark header {
+    background: linear-gradient(90deg,#232526,#414345);
+  }
+  header h1 {font-size:2em; letter-spacing:1px;}
+  nav {margin-left:20px;}
+  nav a {
+    color:white; text-decoration:none;
+    margin:0 15px; font-weight:bold;
+  }
+  nav a:hover {color:yellow;}
+  
+  /* Theme Toggle */
+  .theme-toggle {
+    position:absolute; right:20px; top:20px;
+    background:rgba(255,255,255,0.3);
+    border:none; border-radius:50%;
+    width:40px; height:40px; cursor:pointer;
+    display:flex; justify-content:center; align-items:center;
+    font-size:20px; color:white;
+    backdrop-filter:blur(5px);
+  }
+  body.dark .theme-toggle {
+    background:rgba(0,0,0,0.3);
+    color:gold;
+  }
+
+  section {
+    padding:60px 20px;
+    text-align:center;
+  }
+  #about {
+    background:rgba(255,255,255,0.85);
+    border-radius:20px;
+    width:90%; margin:auto;
+    padding:40px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    animation:fadeInUp 1.2s;
+  }
+  body.dark #about {
+    background:rgba(0,0,0,0.4);
+    box-shadow:0 4px 20px rgba(255,255,255,0.1);
+  }
+  #about img {
+    width:160px; height:160px; border-radius:50%;
+    border:4px solid #00c6ff;
+    margin-bottom:20px;
+    animation:float 4s ease-in-out infinite;
+  }
+
+  h2 {
+    color:#0072ff;
+    font-size:2em; margin-bottom:20px;
+    position:relative;
+  }
+  body.dark h2 {color:#00c6ff;}
+  h2::after {
+    content:''; position:absolute; bottom:-5px; left:50%;
+    transform:translateX(-50%);
+    width:60px; height:4px; background:#00c6ff;
+    border-radius:2px; animation:growLine 2s infinite alternate;
+  }
+
+  p {
+    max-width:800px; margin:auto; font-size:1.1em; line-height:1.6;
+  }
+
+  .projects {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:20px; margin-top:40px;
+  }
+  .project {
+    background:white;
+    padding:25px; border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    transition:transform .4s, box-shadow .4s;
+  }
+  .project:hover {
+    transform:translateY(-10px) scale(1.03);
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+  }
+  body.dark .project {
+    background:rgba(255,255,255,0.1);
+    box-shadow:0 4px 10px rgba(255,255,255,0.1);
+  }
+  .project h3 {color:#0072ff; margin-bottom:10px;}
+  body.dark .project h3 {color:#00c6ff;}
+
+  #skills ul {
+    list-style:none;
+    display:flex; flex-wrap:wrap; justify-content:center;
+    margin-top:20px;
+  }
+  #skills li {
+    background:linear-gradient(45deg,#00c6ff,#0072ff);
+    color:white; margin:10px;
+    padding:10px 20px; border-radius:30px;
+    font-weight:bold;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  #contact form {
+    max-width:400px; margin:auto;
+    display:flex; flex-direction:column;
+    background:rgba(255,255,255,0.9);
+    padding:25px; border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+  }
+  body.dark #contact form {
+    background:rgba(0,0,0,0.5);
+    box-shadow:0 4px 20px rgba(255,255,255,0.1);
+  }
+  input, textarea {
+    margin:10px 0; padding:10px;
+    border-radius:8px; border:1px solid #ccc;
+    font-size:1em;
+    background:white; color:black;
+  }
+  body.dark input, body.dark textarea {
+    background:#222; color:white; border:1px solid #555;
+  }
+
+  button {
+    background:linear-gradient(90deg,#0072ff,#00c6ff);
+    color:white; border:none; padding:10px;
+    border-radius:8px; cursor:pointer;
+    transition:transform .3s;
+  }
+  button:hover {transform:scale(1.05);}
+  footer {
+    background:#0072ff;
+    color:white; text-align:center;
+    padding:15px; margin-top:50px;
+  }
+  body.dark footer {background:#232526;}
+
+  /* Animations */
+  @keyframes fadeInUp {0%{opacity:0;transform:translateY(40px);}100%{opacity:1;transform:translateY(0);}}
+  @keyframes float {0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
+  @keyframes growLine {from{width:40px;}to{width:80px;}}
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Rahul Gorle</h1>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" title="Toggle Theme">🌙</button>
+</header>
+
+<section id="about">
+  <img src="profile.png" alt="Rahul Gorle">
+  <h2>About Me</h2>
+  <p>I'm <strong>Rahul Gorle</strong>, a passionate <strong>B.Tech Electronics and Communication Engineering</strong> student at Aditya College of Engineering and Technology (CGPA: 8.87).  
+  I’m deeply interested in <strong>software development, web technologies, AI, and cloud computing</strong>.  
+  I enjoy building innovative projects and learning new technologies that solve real-world problems.</p>
+</section>
+
+<section id="skills">
+  <h2>Core Skills</h2>
+  <ul>
+    <li>Python</li>
+    <li>C</li>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+    <li>AWS</li>
+    <li>MATLAB</li>
+    <li>AutoCAD</li>
+    <li>GitHub</li>
+  </ul>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="project">
+      <h3>StayHub – Online Rental Property Platform</h3>
+      <p>Developed a property rental platform for landlords and tenants using <strong>HTML, CSS, JavaScript</strong>, and <strong>Google Cloud</strong>.  
+      Integrated Firebase Authentication and Firestore for secure data handling and hosted on Google Cloud for scalability.</p>
+    </div>
+    <div class="project">
+      <h3>Project Portfolio – Web Application</h3>
+      <p>Created a responsive personal portfolio to showcase projects and skills using HTML, CSS, and JS.  
+      Integrated GitHub repositories and project previews for interactive viewing.  
+      <a href="https://github.com/gorlerahul" target="_blank">View on GitHub</a></p>
+    </div>
+    <div class="project">
+      <h3>Food Connect (Zero Hunger Initiative)</h3>
+      <p>A cost-effective web app connecting event halls with orphanages to reduce food waste and hunger — aligned with <strong>UN SDG Goal 2</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <form id="contactForm">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+    <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+    <p id="response" style="margin-top:10px; color:lime;"></p>
+  </form>
+</section>
+
+<footer>
+  <p>© 2025 Rahul Gorle | <a href="mailto:gorlerahul712@gmail.com" style="color:white;">gorlerahul712@gmail.com</a> |
+  <a href="https://github.com/gorlerahul" target="_blank" style="color:white;">GitHub</a> |
+  <a href="https://www.linkedin.com/in/rahul-gorle-102072291/" target="_blank" style="color:white;">LinkedIn</a></p>
+</footer>
+
+<script>
+  // Theme toggle functionality
+  const toggleBtn = document.getElementById('themeToggle');
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+  });
+
+  // Smooth fade-in on scroll
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) entry.target.style.animation = 'fadeInUp 1.2s forwards';
+    });
+  }, {threshold: 0.2});
+  sections.forEach(sec => observer.observe(sec));
+
+  // Contact form simulation
+  document.getElementById("contactForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    document.getElementById("response").innerText = "✅ Thanks, your message has been sent!";
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
